@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ICP & Posicionamento — MBA IA TripleTen Brasil</title>
+  <meta name="description" content="Análise completa de ICP, Anti-ICP e plano de ação para o MBA em IA Aplicada para Negócios da TripleTen Brasil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ───────────────────────────────────────────────── */
+    :root {
+      --accent:        #C05A00;
+      --accent-light:  #E8721A;
+      --accent-muted:  rgba(192,90,0,0.12);
+      --bg:            #F8F5F1;
+      --bg-card:       #FFFFFF;
+      --bg-dark:       #1A1410;
+      --surface:       #EDEAE5;
+      --surface2:      #E0DCD6;
+      --text:          #1A1410;
+      --text-2:        #5C4E3E;
+      --text-3:        #897B6C;
+      --border:        rgba(26,20,16,0.12);
+      --shadow:        0 2px 16px rgba(26,20,16,0.08);
+      --shadow-lg:     0 8px 40px rgba(26,20,16,0.14);
+      --radius:        10px;
+      --radius-lg:     16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg:        #1A1410;
+        --bg-card:   #241E18;
+        --surface:   #2E2720;
+        --surface2:  #3A3028;
+        --text:      #F0EBE4;
+        --text-2:    #C2B5A5;
+        --text-3:    #8A7A6A;
+        --border:    rgba(240,235,228,0.10);
+        --shadow:    0 2px 16px rgba(0,0,0,0.30);
+        --shadow-lg: 0 8px 40px rgba(0,0,0,0.40);
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg:        #1A1410;
+      --bg-card:   #241E18;
+      --surface:   #2E2720;
+      --surface2:  #3A3028;
+      --text:      #F0EBE4;
+      --text-2:    #C2B5A5;
+      --text-3:    #8A7A6A;
+      --border:    rgba(240,235,228,0.10);
+      --shadow:    0 2px 16px rgba(0,0,0,0.30);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.40);
+    }
+
+    /* ── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      padding-inline: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAVIGATION ───────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 100;
+      background: var(--bg-dark);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 52px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-brand {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-light);
+      white-space: nowrap;
+      margin-right: 16px;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2px;
+      list-style: none;
+      flex-shrink: 0;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: color 0.15s, background 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      text-decoration: none;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      background: var(--bg-dark);
+      color: #F0EBE4;
+      padding: 80px 24px 72px;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent-light);
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(240,235,228,0.6);
+      max-width: 600px;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2px;
+      max-width: 900px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+    .stat-card .value {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-card .label {
+      font-size: 12px;
+      color: rgba(240,235,228,0.5);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .stat-card.warn .value { color: #E0695A; }
+    .stat-card.ok .value { color: #6EC49A; }
+
+    /* ── PAGE BODY ────────────────────────────────────────────── */
+    .page-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── SECTION ──────────────────────────────────────────────── */
+    .section {
+      margin-top: 80px;
+      padding-top: 80px;
+      border-top: 1px solid var(--border);
+    }
+    .section:first-child {
+      border-top: none;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+    .section-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--surface2);
+      flex-shrink: 0;
+      letter-spacing: -0.04em;
+      margin-top: -8px;
+      user-select: none;
+    }
+    .section-title-group {}
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-wrap: balance;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-2);
+      margin-top: 10px;
+      max-width: 680px;
+    }
+
+    /* ── PROSE ────────────────────────────────────────────────── */
+    .prose {
+      font-size: 16px;
+      color: var(--text-2);
+      max-width: 760px;
+      line-height: 1.75;
+    }
+    .prose + .prose { margin-top: 16px; }
+    .prose strong { color: var(--text); font-weight: 600; }
+
+    /* ── CARDS ────────────────────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .card-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .card-body {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+    .card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .tag-accent { background: var(--accent-muted); color: var(--accent); }
+    .tag-warn { background: rgba(224,105,90,0.12); color: #C0493A; }
+    .tag-ok { background: rgba(110,196,154,0.12); color: #2E855E; }
+    .tag-neutral { background: var(--surface); color: var(--text-3); }
+
+    /* ── ANTI-ICP ─────────────────────────────────────────────── */
+    .anti-icp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid #C0493A;
+      border-radius: var(--radius-lg);
+      padding: 24px 24px 24px 28px;
+      box-shadow: var(--shadow);
+    }
+    .anti-icp-card .card-title { color: #C0493A; }
+    .signal-list {
+      list-style: none;
+      margin-top: 12px;
+    }
+    .signal-list li {
+      font-size: 13px;
+      color: var(--text-2);
+      padding: 4px 0;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .signal-list li::before {
+      content: '⚠';
+      color: #D0795A;
+      flex-shrink: 0;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* ── CALLOUT ──────────────────────────────────────────────── */
+    .callout {
+      background: var(--accent-muted);
+      border: 1px solid rgba(192,90,0,0.18);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-top: 28px;
+    }
+    .callout-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .callout-text {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .callout-text strong { color: var(--accent); }
+
+    .callout.alert {
+      background: rgba(224,105,90,0.08);
+      border-color: rgba(192,73,58,0.20);
+    }
+    .callout.alert .callout-label { color: #C0493A; }
+
+    /* ── TABLES ───────────────────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: var(--bg-card);
+    }
+    thead {
+      background: var(--surface);
+    }
+    thead th {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 12px 16px;
+      text-align: left;
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--text-2);
+      vertical-align: top;
+    }
+    tbody tr:hover td { background: var(--surface); }
+    .td-strong { color: var(--text); font-weight: 600; }
+    .td-accent { color: var(--accent); font-weight: 600; }
+    .td-warn { color: #C0493A; font-weight: 600; }
+    .td-ok { color: #2E855E; font-weight: 600; }
+
+    /* ── STATUS BADGES ────────────────────────────────────────── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .badge-ok { background: rgba(110,196,154,0.15); color: #2E855E; }
+    .badge-warn { background: rgba(224,105,90,0.12); color: #C0493A; }
+    .badge-neutral { background: var(--surface); color: var(--text-3); }
+    .badge-accent { background: var(--accent-muted); color: var(--accent); }
+
+    /* ── DATA BARS ────────────────────────────────────────────── */
+    .data-bar-list { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .data-bar-item { display: flex; flex-direction: column; gap: 5px; }
+    .data-bar-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .data-bar-name { font-size: 14px; color: var(--text-2); font-weight: 500; }
+    .data-bar-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .data-bar-track {
+      height: 6px;
+      background: var(--surface2);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .data-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: var(--accent);
+      transition: width 0.8s ease;
+    }
+    .data-bar-fill.warn { background: #C0493A; }
+    .data-bar-fill.ok { background: #6EC49A; }
+
+    /* ── SCRIPT BLOCK ─────────────────────────────────────────── */
+    .script-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+    .script-block .speaker {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    /* ── TWO-COL ──────────────────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    @media (max-width: 620px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── DIVIDER ──────────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 32px 0;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-3);
+    }
+    .footer strong { color: var(--text-2); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero { padding: 56px 20px 52px; }
+      .section { margin-top: 56px; padding-top: 56px; }
+      .section-header { flex-direction: column; gap: 12px; }
+      .section-num { font-size: 48px; margin-top: 0; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .page-body { padding-inline: 20px; }
+    }
+
+    /* ── ICP PROFILE BOX ──────────────────────────────────────── */
+    .icp-profile {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      margin-top: 32px;
+    }
+    .icp-profile-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .icp-icon {
+      width: 52px; height: 52px;
+      background: var(--accent-muted);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .icp-profile-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .icp-profile-sub { font-size: 14px; color: var(--text-3); margin-top: 2px; }
+    .icp-attrs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .icp-attr { background: var(--surface); border-radius: var(--radius); padding: 14px 16px; }
+    .icp-attr-key {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 4px;
+    }
+    .icp-attr-val { font-size: 15px; color: var(--text); font-weight: 500; }
+
+    /* ── HIGH PACE TABLE ──────────────────────────────────────── */
+    .highlight-row td { background: rgba(110,196,154,0.05); }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" role="navigation" aria-label="Seções do documento">
+  <div class="nav-inner">
+    <div class="nav-brand">MBA IA — TripleTen</div>
+    <ul class="nav-links">
+      <li><a href="#diagnostico">Diagnóstico</a></li>
+      <li><a href="#base">Base de Alunos</a></li>
+      <li><a href="#icp">ICP Ideal</a></li>
+      <li><a href="#anti-icp">Anti-ICP</a></li>
+      <li><a href="#diferenciacao">Diferenciação</a></li>
+      <li><a href="#benchmark">Benchmark</a></li>
+      <li><a href="#gargalos">Gargalos</a></li>
+      <li><a href="#plano">Plano de Ação</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Análise Estratégica · Setembro 2026</p>
+    <h1>ICP & Posicionamento<br><em>MBA em IA para Negócios</em></h1>
+    <p class="hero-sub">Mapeamento completo do perfil de cliente ideal, Anti-ICP, gargalos de conversão e plano de ação para o MBA da TripleTen Brasil.</p>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="value">27</div>
+        <div class="label">Alunos (Cohorts 1–4)</div>
+      </div>
+      <div class="stat-card ok">
+        <div class="value">40,7%</div>
+        <div class="label">Estudando ativamente</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="value">59,3%</div>
+        <div class="label">Em risco / perdidos</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="value">74,1%</div>
+        <div class="label">Ritmo de aprendizado baixo</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">R$31k</div>
+        <div class="label">Ticket médio (parcelado)</div>
+      </div>
+      <div class="stat-card">
+        <div class="value">4</div>
+        <div class="label">Perfis Anti-ICP mapeados</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE BODY -->
+<main class="page-body">
+
+  <!-- ── 1. DIAGNÓSTICO ───────────────────────────────────────── -->
+  <section class="section" id="diagnostico">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">01</div>
+      <div class="section-title-group">
+        <p class="section-eyebrow">Ponto de partida</p>
+        <h2 class="section-title">Diagnóstico Estratégico</h2>
+        <p class="section-desc">O que os dados da base de alunos e o posicionamento atual revelam sobre o problema central.</p>
+      </div>
+    </div>
+
+    <p class="prose">O MBA em IA Aplicada para Negócios da TripleTen Brasil ocupa uma posição de mercado única: é o único MBA de IA 100% aplicado do país com metodologia hands-on e acesso a mentores praticantes. O produto é forte. O problema está na <strong>atração do perfil errado de aluno.</strong></p>
+    <p class="prose">A taxa de 59,3% de alunos em risco (drop-out, inativos, silenciosos) não é acidente — é sinal estrutural de que a comunicação atual está convertendo curiosos e exploradores, não executivos e líderes prontos para aplicar IA nos seus negócios.</p>
+
+    <div class="callout alert">
+      <p class="callout-label">⚡ Hipótese central</p>
+      <p class="callout-text">O produto está certo. O <strong>posicionamento está atraindo o perfil errado</strong>. Quando o aluno errado entra, o engajamento cai, o suporte aumenta e a taxa de conclusão despenca — prejudicando NPS, prova social e novas matrículas.</p>
+    </div>
+
+    <div class="two-col" style="margin-top:32px;">
+      <div class="card">
+        <div class="card-tag tag-warn">Problema</div>
+        <div class="card-title">Linguagem híbrida confusa</div>
+        <div class="card-body">A landing page e os materiais de vendas misturam vocabulário de bootcamp técnico ("projetos práticos", "sprint") com posicionamento de MBA executivo. Isso atrai curiosos em transição de carreira em vez de líderes de negócio.</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-warn">Problema</div>
+        <div class="card-title">Prova social escassa</div>
+        <div class="card-body">Com apenas 1 projeto aprovado entre 27 alunos, há pouco material de caso de sucesso. O ciclo é vicioso: aluno errado → baixo engajamento → sem prova social → difícil atrair aluno certo.</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-accent">Oportunidade</div>
+        <div class="card-title">Ticket competitivo real</div>
+        <div class="card-body">R$31.250 posiciona o produto acima de XP (R$9.800) e FAAP (R$5.700), mas bem abaixo de FGV (R$48.000). Com o ICP certo, esse preço é percebido como justo — não como caro.</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-accent">Oportunidade</div>
+        <div class="card-title">5 alunos de alto desempenho</div>
+        <div class="card-body">Os 5 alunos com ritmo alto são o retrato do ICP ideal. São executivos e líderes que já gerenciam equipes e vieram com objetivo claro: aplicar IA no seu trabalho, não explorar uma nova carreira.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. BASE DE ALUNOS ─────────────────────────────────────── -->
+  <section class="section" id="base">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">02</div>
+      <div class="section-title-group">
+        <p class="section-eyebrow">Análise de dados</p>
+        <h2 class="section-title">Base de Alunos — Cohorts 1 a 4</h2>
+        <p class="section-desc">27 alunos analisados. O padrão de engajamento revela dois perfis distintos dentro da base atual.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3 style="font-family:'Fraunces',serif; font-size:18px; margin-bottom:16px; color:var(--text);">Status atual</h3>
+        <div class="data-bar-list">
+          <div class="data-bar-item">
+            <div class="data-bar-header">
+              <span class="data-bar-name">Estudando <span class="badge badge-ok">Ativo</span></span>
+              <span class="data-bar-val">11 (40,7%)</span>
+            </div>
+            <div class="data-bar-track"><div class="data-bar-fill ok" style="width:40.7%"></div></div>
+          </div>
+          <div class="data-bar-item">
+            <div class="data-bar-header">
+              <span class="data-bar-name">Inativo +15 dias</span>
+              <span class="data-bar-val">6 (22,2%)</span>
+            </div>
+            <div class="data-bar-track"><div class="data-bar-fill warn" style="width:22.2%"></div></div>
+          </div>
+          <div class="data-bar-item">
+            <div class="data-bar-header">
+              <span class="data-bar-name">Drop-out</span>
+              <span class="data-bar-val">5 (18,5%)</span>
+            </div>
+            <div class="data-bar-track"><div class="data-bar-fill warn" style="width:18.5%"></div></div>
+          </div>
+          <div class="data-bar-item">
+            <div class="data-bar-header">
+              <span class="data-bar-name">Silencioso / sem sinal</span>
+              <span class="data-bar-val">3 (11,1%)</span>
+            </div>
+            <div class="data-bar-track"><div class="data-bar-fill warn" style="width:11.1%"></div></div>
+          </div>
+          <div class="data-bar-item">
+            <div class="data-bar-header">
+              <span class="data-bar-name">De férias / antes de iniciar</span>
+              <span class="data-bar-val">2 (7,4%)</span>
+            </div>
+            <div class="data-bar-track"><div class="data-bar-fill" style="width:7.4%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Fraunces',serif; font-size:18px; margin-bottom:16px; color:var(--text);">Ritmo de aprendizado</h3>
+        <div class="data-bar-list">
+          <div class="data-bar-item">
+            <div class="data-bar-header">
+              <span class="data-bar-name">Baixo</span>
+              <span class="data-bar-val">20 (74,1%)</span>
+            </div>
+            <div class="data-bar-track"><div class="data-bar-fill warn" style="width:74.1%"></div></div>
+          </div>
+          <div class="data-bar-item">
+            <div class="data-bar-header">
+              <span class="data-bar-name">Alto <span class="badge badge-ok">Destaque</span></span>
+              <span class="data-bar-val">5 (18,5%)</span>
+            </div>
+            <div class="data-bar-track"><div class="data-bar-fill ok" style="width:18.5%"></div></div>
+          </div>
+          <div class="data-bar-item">
+            <div class="data-bar-header">
+              <span class="data-bar-name">Erro / indefinido</span>
+              <span class="data-bar-val">2 (7,4%)</span>
+            </div>
+            <div class="data-bar-track"><div class="data-bar-fill" style="width:7.4%"></div></div>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:20px; padding:16px 20px;">
+          <p class="callout-label">Dado crítico</p>
+          <p class="callout-text" style="font-size:14px;">Todos os 5 alunos de ritmo alto estão ativamente estudando. <strong>100% de retenção no perfil certo.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:20px; margin-bottom:8px; color:var(--text);">Alunos de alto desempenho — retrato do ICP</h3>
+    <p class="prose" style="margin-bottom:20px;">Estes 5 alunos são a prova viva do ICP ideal. Todos têm experiência de gestão prévia e entraram com objetivo claro de aplicação.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Ritmo</th>
+            <th>Status</th>
+            <th>LinkedIn</th>
+            <th>Padrão observado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td class="td-strong">Christopher Chung</td>
+            <td><span class="badge badge-ok">Alto</span></td>
+            <td><span class="badge badge-ok">Estudando</span></td>
+            <td>✓</td>
+            <td>Engajamento consistente, progressão sem gaps</td>
+          </tr>
+          <tr class="highlight-row">
+            <td class="td-strong">Fernando Armelin</td>
+            <td><span class="badge badge-ok">Alto</span></td>
+            <td><span class="badge badge-ok">Estudando</span></td>
+            <td>✓</td>
+            <td>Perfil executivo, ritmo metódico</td>
+          </tr>
+          <tr class="highlight-row">
+            <td class="td-strong">Vitória Kunde Azevedo</td>
+            <td><span class="badge badge-ok">Alto</span></td>
+            <td><span class="badge badge-ok">Estudando</span></td>
+            <td>✓</td>
+            <td>Liderança já estabelecida, foco em aplicação</td>
+          </tr>
+          <tr class="highlight-row">
+            <td class="td-strong">Caio Chittero</td>
+            <td><span class="badge badge-ok">Alto</span></td>
+            <td><span class="badge badge-ok">Estudando</span></td>
+            <td>✓</td>
+            <td>Objetivos de negócio claros desde a matrícula</td>
+          </tr>
+          <tr class="highlight-row">
+            <td class="td-strong">Renato Vasconcelos</td>
+            <td><span class="badge badge-ok">Alto</span></td>
+            <td><span class="badge badge-ok">Estudando</span></td>
+            <td>✓</td>
+            <td>Background de gestão, progresso acelerado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:28px;">
+      <p class="callout-label">Outros indicadores</p>
+      <p class="callout-text">LinkedIn presente: <strong>19/27 alunos (70,4%)</strong> · Ativos últimos 7 dias: <strong>9</strong> · Ativos últimos 30 dias: <strong>13</strong> · Progresso médio entre ativos: <strong>47,4%</strong> · Projetos aprovados: <strong>1</strong> (de 27)</p>
+    </div>
+  </section>
+
+  <!-- ── 3. ICP IDEAL ──────────────────────────────────────────── -->
+  <section class="section" id="icp">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">03</div>
+      <div class="section-title-group">
+        <p class="section-eyebrow">Perfil de cliente ideal</p>
+        <h2 class="section-title">Quem é o aluno certo?</h2>
+        <p class="section-desc">Derivado da análise dos 5 alunos de alto desempenho e das características que correlacionam com retenção e conclusão.</p>
+      </div>
+    </div>
+
+    <div class="icp-profile">
+      <div class="icp-profile-header">
+        <div class="icp-icon">🎯</div>
+        <div>
+          <div class="icp-profile-title">O Líder que Quer Liderar IA — não Executá-la</div>
+          <div class="icp-profile-sub">Perfil primário · Alta probabilidade de conclusão e NPS positivo</div>
+        </div>
+      </div>
+      <div class="icp-attrs">
+        <div class="icp-attr">
+          <div class="icp-attr-key">Cargo / Nível</div>
+          <div class="icp-attr-val">Gerente, Coordenador, Head, Diretor ou Sócio</div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-key">Experiência</div>
+          <div class="icp-attr-val">5+ anos de carreira, com pelo menos 2 em gestão</div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-key">Motivação principal</div>
+          <div class="icp-attr-val">Liderar projetos de IA na empresa ou justificar budget para IA</div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-key">Dor que sente</div>
+          <div class="icp-attr-val">"Minha equipe já usa IA mas eu não sei avaliar nem dirigir isso"</div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-key">Renda / Perfil</div>
+          <div class="icp-attr-val">Renda entre R$10k–R$25k/mês; empresa paga ou reembolsa parcialmente</div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-key">Disponibilidade</div>
+          <div class="icp-attr-val">8–12h/semana no MBA; agenda cheia mas disciplinada</div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-key">Referência de decisão</div>
+          <div class="icp-attr-val">Compara ROI, não só preço. Pede proposta para empresa patrocinar</div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-key">Canais onde está</div>
+          <div class="icp-attr-val">LinkedIn ativo, podcasts de negócios, eventos de liderança</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <p class="callout-label">O que ele NÃO quer</p>
+      <p class="callout-text">Não quer aprender a <strong>programar</strong>. Não quer virar cientista de dados. Quer entender o suficiente para <strong>tomar decisões</strong>, <strong>contratar as pessoas certas</strong> e <strong>cobrar resultado do time</strong>.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:28px;">
+      <div class="card">
+        <div class="card-tag tag-accent">ICP Secundário A</div>
+        <div class="card-title">O Empreendedor que Quer Escalar</div>
+        <div class="card-body">Dono de PME ou startup early-stage que quer usar IA para ganhar eficiência sem contratar 10 pessoas. Tem tempo limitado, mas ROI claro. Paga do próprio bolso e toma decisão rápida quando vê caso de uso real.</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-accent">ICP Secundário B</div>
+        <div class="card-title">O Consultor que Quer Diferencial</div>
+        <div class="card-body">Consultor independente ou de boutique que precisa de um diferencial técnico credível para propor projetos de IA aos clientes. O MBA vira argumento de venda e a TripleTen vira parceiro de entrega.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. ANTI-ICP ───────────────────────────────────────────── -->
+  <section class="section" id="anti-icp">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">04</div>
+      <div class="section-title-group">
+        <p class="section-eyebrow">Matriz Anti-ICP</p>
+        <h2 class="section-title">Quem não deveria matricular?</h2>
+        <p class="section-desc">Perfis que geram alto custo de suporte, baixa conclusão e zero prova social. Identificar antes da venda evita churn e protege o NPS.</p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="anti-icp-card">
+        <div class="card-tag tag-warn">Anti-ICP 1</div>
+        <div class="card-title">O Curioso de IA</div>
+        <div class="card-body">Fascinou com ChatGPT, quer "entender IA", mas não tem aplicação concreta em mente. Espera um curso introdutório. Frustra-se com profundidade e abandona nos primeiros sprints.</div>
+        <ul class="signal-list">
+          <li>Pergunta se precisa saber programar antes de comprar</li>
+          <li>"Quero entender melhor o assunto"</li>
+          <li>Sem cargo de gestão ou liderança</li>
+          <li>Comparou com cursos de R$300 da Udemy</li>
+        </ul>
+      </div>
+      <div class="anti-icp-card">
+        <div class="card-tag tag-warn">Anti-ICP 2</div>
+        <div class="card-title">O Migrador de Carreira</div>
+        <div class="card-body">Quer entrar na área de dados ou IA como nova profissão. O MBA não é formação técnica — é aceleração para quem já lidera. Vai sentir-se perdido e reclamar que o conteúdo "não é o que esperava".</div>
+        <ul class="signal-list">
+          <li>"Quero mudar de área para trabalhar com IA"</li>
+          <li>Sem experiência de gestão de equipes ou projetos</li>
+          <li>Busca portfólio técnico, não aplicação de negócio</li>
+          <li>Foco em certificado para currículo</li>
+        </ul>
+      </div>
+      <div class="anti-icp-card">
+        <div class="card-tag tag-warn">Anti-ICP 3</div>
+        <div class="card-title">O Recém-Formado Sem Gestão</div>
+        <div class="card-body">Jovem profissional com pouca experiência prática. A metodologia exige que o aluno traga desafios reais de negócio para aplicar — sem esse contexto, o aprendizado fica abstrato e a conclusão improvável.</div>
+        <ul class="signal-list">
+          <li>Menos de 3 anos de experiência profissional</li>
+          <li>Nunca gerenciou equipe ou budget</li>
+          <li>Pressão familiar para ter diploma "de MBA"</li>
+          <li>Compara muito com pós-graduações tradicionais</li>
+        </ul>
+      </div>
+      <div class="anti-icp-card">
+        <div class="card-tag tag-warn">Anti-ICP 4</div>
+        <div class="card-title">O Sensível ao Preço</div>
+        <div class="card-body">Faz objeção de preço na primeira abordagem e pede desconto imediato. Compra porque o desconto foi grande, mas sem comprometimento real com o MBA. Alta chance de abandono ou inadimplência.</div>
+        <ul class="signal-list">
+          <li>Abre com "mas por que tão caro?" ainda na prospecção</li>
+          <li>Compara com cursos gratuitos do YouTube</li>
+          <li>Não envolve empresa no custo</li>
+          <li>Decida só após pressão ou prazo artificial</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout alert" style="margin-top:32px;">
+      <p class="callout-label">Regra de ouro para o SDR</p>
+      <p class="callout-text">Se o lead não consegue responder <strong>"Qual problema de negócio você quer resolver com IA nos próximos 6 meses?"</strong> de forma concreta e específica — ele é Anti-ICP. Não force a venda. Oriente para outro produto ou lista de espera de uma versão mais introdutória.</p>
+    </div>
+  </section>
+
+  <!-- ── 5. DIFERENCIAÇÃO ──────────────────────────────────────── -->
+  <section class="section" id="diferenciacao">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">05</div>
+      <div class="section-title-group">
+        <p class="section-eyebrow">Análise de posicionamento</p>
+        <h2 class="section-title">Erros de Diferenciação Atuais</h2>
+        <p class="section-desc">O que a comunicação atual está fazendo que afasta o ICP e atrai Anti-ICPs.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Erro de posicionamento</th>
+            <th>Onde aparece</th>
+            <th>Efeito</th>
+            <th>Correção</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-strong">Linguagem de bootcamp técnico</td>
+            <td>Landing page, Instagram</td>
+            <td class="td-warn">Atrai curiosos e técnicos, não executivos</td>
+            <td>Substituir "sprints" e "projetos práticos" por "aplicações no seu negócio" e "decisões com dados"</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Ausência de caso de ROI</td>
+            <td>Apresentação de vendas</td>
+            <td class="td-warn">Dificulta justificar para empresa patrocinar</td>
+            <td>Incluir calculadora de ROI: "R$31k vs. contratar 1 analista de IA sênior (R$120k/ano)"</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Sem segmentação de audiência</td>
+            <td>Anúncios, feed Instagram</td>
+            <td class="td-warn">Impressões dispersas, CAC alto</td>
+            <td>Criar criativos específicos por cargo: "Para Gerentes", "Para Diretores", "Para Empreendedores"</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Prova social de processo, não resultado</td>
+            <td>Depoimentos atuais</td>
+            <td class="td-warn">Não convence executivo cético</td>
+            <td>Priorizar depoimentos com métrica: "Reduzi 40% do tempo de análise", "Consegui aprovar o projeto de IA"</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Comparação implícita com pós-graduação</td>
+            <td>Título "MBA"</td>
+            <td class="td-warn">Expectativa de formato tradicional</td>
+            <td>Antecipar: "Não é um MBA tradicional — é aceleração hands-on com aplicação imediata"</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Mentores não nomeados visivelmente</td>
+            <td>Landing page, Instagram</td>
+            <td class="td-warn">Executa vs. comunidade como diferencial</td>
+            <td>Destaque visual de cada mentor com empresa atual, cargo real e projeto de IA que liderou</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── 6. BENCHMARK ──────────────────────────────────────────── -->
+  <section class="section" id="benchmark">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">06</div>
+      <div class="section-title-group">
+        <p class="section-eyebrow">Análise competitiva</p>
+        <h2 class="section-title">Benchmarking de Mercado</h2>
+        <p class="section-desc">Como o MBA da TripleTen se posiciona frente aos principais competidores.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Instituição</th>
+            <th>Produto</th>
+            <th>Ticket</th>
+            <th>Formato</th>
+            <th>Foco</th>
+            <th>Diferencial</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-strong">FGV</td>
+            <td>MBA em Gestão de IA</td>
+            <td class="td-warn">~R$48.000</td>
+            <td>Presencial / híbrido</td>
+            <td>Estratégia e frameworks</td>
+            <td>Marca premium, rede de alumni</td>
+          </tr>
+          <tr>
+            <td class="td-strong">FIAP</td>
+            <td>MBA em IA & Machine Learning</td>
+            <td>~R$22.000–30.000</td>
+            <td>Presencial SP</td>
+            <td>Técnico + negócios</td>
+            <td>Hub de tecnologia, parcerias tech</td>
+          </tr>
+          <tr>
+            <td class="td-strong">FAAP</td>
+            <td>Pós em Inteligência Artificial</td>
+            <td>~R$5.700</td>
+            <td>Online</td>
+            <td>Introdutório, teórico</td>
+            <td>Acessibilidade, marca tradicional</td>
+          </tr>
+          <tr>
+            <td class="td-strong">USP / ESALQ</td>
+            <td>MBA Data Science & Analytics</td>
+            <td>~R$12.000–18.000</td>
+            <td>Online / semi-presencial</td>
+            <td>Científico, acadêmico</td>
+            <td>Credibilidade USP, rigor metodológico</td>
+          </tr>
+          <tr>
+            <td class="td-strong">XP Educação</td>
+            <td>MBA em IA para Negócios</td>
+            <td>~R$9.800</td>
+            <td>Online assíncrono</td>
+            <td>Finanças + IA, framework XP</td>
+            <td>Ecossistema XP, networking finance</td>
+          </tr>
+          <tr style="background: var(--accent-muted);">
+            <td class="td-strong td-accent">TripleTen Brasil</td>
+            <td class="td-accent">MBA em IA Aplicada para Negócios</td>
+            <td class="td-accent">R$31.250</td>
+            <td>Online hands-on, sprints</td>
+            <td>Aplicação prática, mentores praticantes</td>
+            <td class="td-accent">Único 100% hands-on com aplicação real</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col" style="margin-top:24px;">
+      <div class="callout">
+        <p class="callout-label">Posição estratégica</p>
+        <p class="callout-text">TripleTen ocupa o espaço <strong>premium-acessível</strong>: mais caro que XP e FAAP, significativamente mais barato que FGV — com diferencial único de aplicação prática que nenhum outro oferece nessa faixa.</p>
+      </div>
+      <div class="callout alert">
+        <p class="callout-label">Risco</p>
+        <p class="callout-text">A proposta de valor única <strong>não está sendo comunicada</strong>. A linguagem atual deixa a TripleTen parecer um bootcamp caro, não um MBA executivo acessível.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. GARGALOS ───────────────────────────────────────────── -->
+  <section class="section" id="gargalos">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">07</div>
+      <div class="section-title-group">
+        <p class="section-eyebrow">Funil de conversão</p>
+        <h2 class="section-title">Gargalos por Canal</h2>
+        <p class="section-desc">Onde o funil está vazando e o que está causando perda de leads qualificados.</p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-tag tag-warn">Instagram</div>
+        <div class="card-title">Conteúdo educacional sem conversão</div>
+        <div class="card-body">Feed com conteúdo sobre IA em geral (tendências, ferramentas) que educa mas não qualifica nem converte. Falta de CTAs específicos por ICP. Depoimentos sem métricas de resultado de negócio. Ausência de conteúdo de "por que pagar R$31k".</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-warn">LinkedIn</div>
+        <div class="card-title">Pouca presença no canal certo</div>
+        <div class="card-body">O ICP ideal (gerentes e diretores) vive no LinkedIn, mas a presença da TripleTen lá é esporádica. Falta conteúdo de liderança de IA, cases de ROI e menção de mentores com credencial executiva.</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-warn">Landing Page</div>
+        <div class="card-title">Sobrecarga de informação técnica</div>
+        <div class="card-body">A landing page lista módulos e tecnologias como argumento principal. O executivo quer saber: "O que isso me permite fazer na segunda-feira?" — não uma ementa. Estrutura de benefícios precede estrutura de conteúdo.</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-warn">Apresentação de Vendas</div>
+        <div class="card-title">Sem diagnóstico antes da proposta</div>
+        <div class="card-body">A apresentação vai para oferta e preço antes de confirmar fit. SDR precisa de um roteiro de qualificação com 5 perguntas que revelam se o lead é ICP ou Anti-ICP antes de falar em investimento.</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-warn">HubSpot / CRM</div>
+        <div class="card-title">Sem nutrição segmentada</div>
+        <div class="card-body">Leads que não fecham na primeira abordagem entram em fluxo genérico. Falta sequência de nutrição específica para cargo (gerente vs. empreendedor) com casos de uso distintos e prova social relevante.</div>
+      </div>
+      <div class="card">
+        <div class="card-tag tag-neutral">Elephan / Transcrições</div>
+        <div class="card-title">Insights não capitalizados</div>
+        <div class="card-body">As transcrições de reunião são fonte rica de objeções reais e linguagem do cliente — mas precisam ser analisadas regularmente para atualizar o playbook de vendas e os conteúdos de marketing.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 8. PLANO DE AÇÃO ──────────────────────────────────────── -->
+  <section class="section" id="plano">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">08</div>
+      <div class="section-title-group">
+        <p class="section-eyebrow">Plano de ação prioritário</p>
+        <h2 class="section-title">O Que Fazer a Seguir</h2>
+        <p class="section-desc">Ações concretas por canal, com priorização por impacto e facilidade de execução.</p>
+      </div>
+    </div>
+
+    <!-- Semana 1-2 -->
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin-bottom:20px; color:var(--text);">
+      Imediato — Próximas 2 semanas
+    </h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-tag tag-accent">SDR / Vendas</div>
+        <div class="card-title">Script de Qualificação ICP</div>
+        <div class="card-body">Criar roteiro com 5 perguntas para aplicar antes de qualquer demo ou proposta. O objetivo é identificar se o lead é ICP, ICP secundário ou Anti-ICP.</div>
+        <div class="script-block" style="margin-top:16px;">
+          <div class="speaker">Pergunta 1 — Contexto de cargo</div>
+          "Hoje você lidera equipe ou projetos? Me conta um pouco do seu dia a dia."
+        </div>
+        <div class="script-block">
+          <div class="speaker">Pergunta 2 — Problema concreto</div>
+          "Que problema de negócio você quer resolver usando IA nos próximos 6 meses?"
+        </div>
+        <div class="script-block">
+          <div class="speaker">Pergunta 3 — Empresa no loop</div>
+          "Sua empresa já tem iniciativas de IA? Você estaria propondo isso internamente?"
+        </div>
+        <div class="script-block">
+          <div class="speaker">Pergunta 4 — Disponibilidade real</div>
+          "O programa exige 8–12h por semana. Como está sua agenda para esse comprometimento?"
+        </div>
+        <div class="script-block">
+          <div class="speaker">Pergunta 5 — Decisão de investimento</div>
+          "O investimento vai sair do seu bolso, da empresa ou você vai propor reembolso?"
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-tag tag-accent">Landing Page</div>
+          <div class="card-title">Reescrever hero section</div>
+          <div class="card-body">Substituir o foco em módulos e tecnologias pela transformação do aluno. Exemplo de headline: <em>"Líderes que entendem IA fecham mais projetos, constroem equipes melhores e tomam decisões mais rápidas."</em> CTA primário: "Fale com um especialista" (não "Inscreva-se").</div>
+        </div>
+        <div class="card">
+          <div class="card-tag tag-accent">LinkedIn</div>
+          <div class="card-title">Série de conteúdo executivo</div>
+          <div class="card-body">Lançar série semanal no LinkedIn: "O que um Gerente de [área] precisa saber sobre IA" — com casos de uso específicos por setor. Cada post termina com o diferencial do MBA, não um link de venda.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Mês 1-2 -->
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin-bottom:20px; color:var(--text);">
+      Curto prazo — 30 a 60 dias
+    </h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ação</th>
+            <th>Canal</th>
+            <th>Responsável</th>
+            <th>Objetivo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-strong">Entrevistar os 5 alunos de alto desempenho</td>
+            <td>Interno</td>
+            <td>CS / Marketing</td>
+            <td>Extrair linguagem real, dores e resultados para prova social</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Criar calculadora de ROI para empresa patrocinadora</td>
+            <td>Landing Page / Vendas</td>
+            <td>Marketing</td>
+            <td>Facilitar aprovação de budget em empresas — reduz ciclo de venda</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Segmentar leads no HubSpot por cargo/função</td>
+            <td>CRM</td>
+            <td>SDR / RevOps</td>
+            <td>Ativar sequências de nurture específicas por perfil</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Revisar criativos do Instagram com linguagem de liderança</td>
+            <td>Instagram</td>
+            <td>Marketing</td>
+            <td>Reduzir atração de Anti-ICP curioso; aumentar qualificação orgânica</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Página de mentores com credencial executiva visível</td>
+            <td>Landing Page</td>
+            <td>Marketing</td>
+            <td>Aumentar percepção de valor e credibilidade do corpo docente</td>
+          </tr>
+          <tr>
+            <td class="td-strong">Analisar transcrições Elephan com foco em objeções</td>
+            <td>Vendas</td>
+            <td>Head of Sales</td>
+            <td>Atualizar playbook de objeções com linguagem real dos leads</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Script de Closer -->
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin-bottom:16px; color:var(--text);">
+      Script de Closer — Objeção de Preço
+    </h3>
+    <p class="prose" style="margin-bottom:20px;">Para usar quando o lead questiona o investimento de R$31.250.</p>
+
+    <div class="script-block">
+      <div class="speaker">Closer</div>
+      "Faz sentido você comparar antes de decidir. Posso te ajudar a fazer essa conta? Um analista de IA sênior no mercado custa entre R$8k e R$15k por mês — só em salário. Com o MBA, você aprende a liderar e especificar projetos de IA sem precisar ser técnico, o que na prática vale muito mais do que o investimento."
+    </div>
+    <div class="script-block">
+      <div class="speaker">Closer — se a objeção continuar</div>
+      "Você mencionou que sua empresa já tem projetos de IA. Você já pensou em propor o reembolso como desenvolvimento de liderança? Temos uma carta modelo para apresentar ao seu RH — muitos alunos nossos conseguiram patrocínio parcial ou total da empresa."
+    </div>
+
+    <div class="callout" style="margin-top:32px;">
+      <p class="callout-label">Métricas de sucesso para acompanhar</p>
+      <p class="callout-text">
+        Taxa de qualificação de leads (ICP vs. Anti-ICP) ·
+        Taxa de conclusão do programa (meta: +50% em 6 meses) ·
+        NPS de alunos ativos ·
+        Número de depoimentos com métricas de negócio ·
+        Taxa de patrocínio corporativo ·
+        CAC por canal (LinkedIn vs. Instagram vs. referral)
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Análise elaborada em setembro de 2026 · <strong>TripleTen Brasil — MBA em IA Aplicada para Negócios</strong></p>
+  <p style="margin-top:6px;">Este documento é confidencial e destinado ao uso interno da equipe de Sales e Marketing.</p>
+</footer>
+
+</body>
+</html>
